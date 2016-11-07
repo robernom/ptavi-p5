@@ -184,8 +184,11 @@ Uno para vídeo y otro para audio. No hay CSRCs.
 
 15. Identifica la trama donde se finaliza la conversación.
  ** ¿Qué método SIP se utiliza? BYE.
+
  ** ¿En qué trama(s)? 924, 925, 927, 933.
- ** ¿Por qué crees que se envía varias veces? Para asegurarse de que el método llega al destino ya que UDP no retransmite mensajes.
+
+ ** ¿Por qué crees que se envía varias veces? 
+Para asegurarse de que el método llega al destino ya que UDP no retransmite mensajes.
 
 
 16. Finalmente, se cierra la aplicación de VozIP.
@@ -210,16 +213,27 @@ Captura una sesión SIP de una conversación con el número SIP sip:9999@qxip.ne
 
 17. Observa las diferencias en el inicio de la conversación entre el entorno del laboratorio y el del ejercicio anterior:
  ** ¿Es necesario el uso de DNS y STUN? ¿Por qué?
- ** ¿Son diferentes el registro y la descripción de la sesión?
+Sí, porque necesitamos saber tras qué clase de NAT y para conocer la IP del UA
 
+ ** ¿Son diferentes el registro y la descripción de la sesión?
+Sí, aparecen campos que no aparecían en la captura anterior. Por ejemplo: aparecen métodos nuevos en Allow: INFO, PING, PRACK.
 
 18. Identifica las diferencias existentes entre esta conversación y la conversación anterior:
- ** ¿Cuántos flujos tenemos?
- ** ¿Cuál es su periodicidad?
- ** ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
- ** ¿Podrías reproducir la conversación desde Wireshark? ¿Cómo? Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria.
- ** ¿Sabrías decir qué tipo de servicio ofrece sip:9999@qxip.net?
+ ** ¿Cuántos flujos tenemos? 2
 
+ ** ¿Cuál es su periodicidad? 20 ms.
+
+ ** ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
+Lo que recibimos: Max delta = 64.652 ms; Mean jitter = 1.399 ms; Max jitter = 6.545
+Lo que emitimos: Max delta = 30.641 ms; Mean jitter = 3.446 ms; Max jitter = 5.214
+
+
+
+ ** ¿Podrías reproducir la conversación desde Wireshark? ¿Cómo? Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria.
+Sí, desde Telephony > VoIP Calls
+
+ ** ¿Sabrías decir qué tipo de servicio ofrece sip:9999@qxip.net (en nuestro caso sip:music@iptel.org)?
+Prueba de sonido con música.
 
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
